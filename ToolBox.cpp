@@ -2,6 +2,18 @@
 using namespace cv;
 using namespace std;
 
+//点p位于[startX --- startX+lenX , startY --- startX+lenY]中
+int ArraySpace::inMap(myPoint p,int lenX, int lenY,int startX ,int startY){
+	return startX <= p.x&&p.x < startX + lenX && startY <= p.y&&p.y < startY + lenY;
+}
+//点在Mat范围的矩形中
+int ArraySpace::inMap(Mat &a, myPoint p){
+	return (0 <= p.x&&p.x < a.rows && 0 <= p.y&&p.y < a.cols);
+}
+void ArraySpace::checkMap(Mat &a, myPoint p){
+	
+	cout<<p.x<<" "<<p.y<<" "<<( 0 <= p.x&&p.x < a.rows && 0 <= p.y&&p.y < a.cols)<<endl;
+}
 Mat mul(const Mat &a, const Scalar &b){
 	Mat c = a.clone();
 	vector<Mat> clist;

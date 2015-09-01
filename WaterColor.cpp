@@ -11,45 +11,48 @@
 #include "ToolBox.h"
 using namespace cv;
 
-void WaterColor::deal(const Mat &input, Mat &output)
+void WaterColor::deal(const Mat &src, Mat &dst)
 {
-	output = input.clone();
-	//ImageToDouble(output, output);
-	//ImageToDouble(output, output);
-	output.convertTo(output, CV_32FC3, 1.0f / 255.0);
+	Mat srcd;
+	ImageToDouble(src, srcd);
 
 	//Pre deal
+	Mat myColorTransform;
 	ColorAdjustment colorAdjustment;
-	colorAdjustment.deal(output, output);
+	colorAdjustment.deal(src, myColorTransform);
+	imshow("colorTransform", myColorTransform);
 
 	//Basic transform
+	Mat mySaliency,myDis;
 	SaliencyDistance saliencyDiatance;
-	saliencyDiatance.deal(output, output);
+	saliencyDiatance.deal(myColorTransform, mySaliency,myDis);
 	
+	Mat myAbstraction;
 	Abstraction abstraction;
-	abstraction.deal(output, output);
-	
-	//Add effects
-	WetInWet wetInWet;
-	wetInWet.deal(output, output);
-	
-	HandTremorEffect handTremoeEffect;
-	handTremoeEffect.deal(output, output);
-	
-	EdgeDarkening edgeDarkening;
-	edgeDarkening.deal(output, output);
-	
-	Granulation granulation;
-	granulation.deal(output, output);
-	
-	TurblenceFlow turblenceFlow;
-	turblenceFlow.deal(output, output);
-	
-	//After deal
-	PigmentVariation pigmentVariation;
-	pigmentVariation.deal(output, output);
-
-	//DoubleToImage(output, output);
-	//DoubleToImage(output, output);
-	output.convertTo(output, CV_8UC3, 255.0);
+	abstraction.deal(myColorTransform, mySaliency,myDis,myAbstraction);
+	dst = mySaliency;
+	//	
+//	//Add effects
+//	WetInWet wetInWet;
+//	wetInWet.deal(output, output);
+//	
+//	HandTremorEffect handTremoeEffect;
+//	handTremoeEffect.deal(output, output);
+//	
+//	EdgeDarkening edgeDarkening;
+//	edgeDarkening.deal(output, output);
+//	
+//	Granulation granulation;
+//	granulation.deal(output, output);
+//	
+//	TurblenceFlow turblenceFlow;
+//	turblenceFlow.deal(output, output);
+//	
+//	//After deal
+//	PigmentVariation pigmentVariation;
+//	pigmentVariation.deal(output, output);
+//
+//	//DoubleToImage(output, output);
+//	//DoubleToImage(output, output);
+//	output.convertTo(output, CV_8UC3, 255.0);
 }

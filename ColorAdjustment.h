@@ -9,7 +9,11 @@ class ColorAdjustment
 {
 public:
 	ColorAdjustment();
+	void colorTransform(cv::Mat& src, cv::Mat& target, cv::Mat& dst);
+	void colorTransform(const cv::Mat& src, cv::Mat& target, cv::Mat& dst);
+	void colorTransform(const cv::Mat& src, cv::Scalar targetMean, cv::Scalar targetStd, cv::Mat& dst);
 	void deal(const cv::Mat &input, cv::Mat &output);
+	void getTargetStdAndMean();
 	void getStdAndMean();
 private:
 	cv::Scalar MEAN;

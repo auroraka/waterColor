@@ -44,6 +44,7 @@
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
       <SDLCheck>true</SDLCheck>
+      <PreprocessorDefinitions>_CRT_SECURE_NO_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
     </ClCompile>
     <Link>
       <GenerateDebugInformation>true</GenerateDebugInformation>
@@ -67,11 +68,35 @@
     <None Include="ClassDiagram.cd" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="ToolBox.cpp" />
-    <ClCompile Include="watercolor.cpp" />
+    <ClInclude Include="Abstraction.h" />
+    <ClInclude Include="ColorAdjustment.h" />
+    <ClInclude Include="Debug.h" />
+    <ClInclude Include="EdgeDarkening.h" />
+    <ClInclude Include="Granulation.h" />
+    <ClInclude Include="HandTremorEffect.h" />
+    <ClInclude Include="PigmentVariation.h" />
+    <ClInclude Include="SaliencyDistance.h" />
+    <ClInclude Include="ToolBox.h" />
+    <ClInclude Include="TurblenceFlow.h" />
+    <ClInclude Include="WaterColor.h" />
+    <ClInclude Include="WetInWet.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="ToolBox.h" />
+    <ClCompile Include="Abstraction.cpp" />
+    <ClCompile Include="ColorAdjustment.cpp" />
+    <ClCompile Include="Debug.cpp" />
+    <ClCompile Include="EdgeDarkening.cpp" />
+    <ClCompile Include="Granulation.cpp" />
+    <ClCompile Include="HandTremorEffect.cpp" />
+    <ClCompile Include="include\geometry\Geometry.cpp" />
+    <ClCompile Include="include\meanshift\MeanShift.cpp" />
+    <ClCompile Include="main.cpp" />
+    <ClCompile Include="PigmentVariation.cpp" />
+    <ClCompile Include="SaliencyDistance.cpp" />
+    <ClCompile Include="ToolBox.cpp" />
+    <ClCompile Include="TurblenceFlow.cpp" />
+    <ClCompile Include="WaterColor.cpp" />
+    <ClCompile Include="WetInWet.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

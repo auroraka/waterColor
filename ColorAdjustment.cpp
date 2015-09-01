@@ -3,77 +3,97 @@
 using namespace cv;
 
 ColorAdjustment::ColorAdjustment(){
-	//MEAN = Scalar(139, 155, 166);
-	//STDDEV = Scalar(52, 55, 57);
+	MEAN = Scalar(64, 3, 10);
+	STDDEV = Scalar(20, 10, 15);
 }
 
-Mat operator * (const Mat &a, const Scalar &b){
-	Mat c = a.clone();
-	vector<Mat> clist;
-	split(c,clist);
-	for (int i = 0; i < 3; i++)
-	{
-		clist[i] = clist[i] * b[i];
-	}
-	merge(clist, c);
-	return c;
-}
 void ColorAdjustment::deal(const Mat &input, Mat &output)
 {
-//	getStdAndMean();
-//
-//	output = input.clone();
-//	//DoubleNomolization(output);
-//	Mat lab;
-//	cvtColor(output, lab, CV_BGR2Lab);
-//	Scalar Mean, Stddev;
-//	meanStdDev(lab, Mean, Stddev);
-//	//output = lab;// (lab - Mean) *(STDDEV / Stddev) + MEAN;
-//	output = (lab - Mean) *(STDDEV / Stddev) + MEAN;
-//	cvtColor(output, output, CV_Lab2BGR);
-//	
-//	//write<Vec3b>(output, 20, 20);
-
-	Mat src = imread("test3.jpg");
-	Mat tar = imread("test4.jpg");
-	src.convertTo(src, CV_32FC3, 1.0 / 255.0);
-	tar.convertTo(tar, CV_32FC3, 1.0 / 255.0);
-	cvtColor(src, src, CV_BGR2Lab);
-	cvtColor(tar, tar, CV_BGR2Lab);
-	Scalar meanSrc = getMean(src), stdSrc = getStdDev(src);
-	Scalar meanTar = getMean(tar), stdTar = getStdDev(tar);
-	Mat dst;
-	dst = (src - meanSrc)*(stdTar / stdSrc) + meanTar;
-	cvtColor(dst, dst, CV_Lab2BGR);
-	imshow("dst",dst);
+	//colorTransform(input, output);
+	//getTargetStdAndMean();
+	colorTransform(input, MEAN, STDDEV, output);
 }
 
-void ColorAdjustment::getStdAndMean()
+
+
+//分为4步
+//1.将src和target转为double格式
+//2.将src和target从RGB空间转为Lab空间
+//3.作变换dstLab = (srcLab - mean(src)) * (std(target) / std(src)) + mean(taarget)
+//4.dstLab转回RGB空间并变回uchar格式
+void ColorAdjustment::colorTransform(const Mat &src,Mat &target,Mat &dst){
+	
+	Mat srcd, targetd;
+	ImageToDouble(src, srcd);
+	ImageToDouble(target, targetd);
+
+	Mat srcLab, targetLab;
+	cvtColor(srcd, srcLab, CV_BGR2Lab);
+	cvtColor(targetd, targetLab, CV_BGR2Lab);
+
+	Scalar srcMean, targetMean, srcStd, targetStd;
+	meanStdDev(srcLab, srcMean, srcStd);
+	meanStdDev(targetLab, targetMean, targetStd);
+
+	Mat dstLab;
+	dstLab = mul((srcLab - srcMean), (div(targetStd, srcStd))) + targetMean;
+
+	Mat dstd;
+	cvtColor(dstLab, dstd, CV_Lab2BGR);
+
+	DoubleToImage(dstd, dst);
+}
+
+void ColorAdjustment::colorTransform(const Mat &src, Scalar targetMean,Scalar targetStd, Mat &dst){
+	
+	Mat srcd;
+	ImageToDouble(src, srcd);
+	
+	Mat srcLab;
+	cvtColor(srcd, srcLab, CV_BGR2Lab);
+	
+	Scalar srcMean, srcStd;
+	meanStdDev(srcLab, srcMean, srcStd);
+
+	Mat dstLab;
+	dstLab = mul((srcLab - srcMean), (div(targetStd, srcStd))) + targetMean;
+
+	Mat dstd;
+	cvtColor(dstLab, dstd, CV_Lab2BGR);
+
+	DoubleToImage(dstd, dst);
+}
+
+
+void ColorAdjustment::getTargetStdAndMean()
 {
-	Scalar allMean(0,0,0), allStdDev(0,0,0);
+	MEAN = Scalar::all(0);
+	STDDEV = Scalar::all(0);
 	int count = 0;
-	for (int i = 3; i <= 3; i++)
+	for (int i = 1; i <= 23; i++)
 	{
 		char fileDir[300]; 
-		//sprintf(fileDir, ".//source//%d.jpg", i);
-		sprintf(fileDir, "test4.jpg");
+		sprintf(fileDir, ".//source//%d.jpg", i);
+		//sprintf(fileDir, "test4.jpg");
 		Mat img = imread(fileDir);
-		//ImageToDouble(img, img);
-		//DoubleNomolization(img);
-		img.convertTo(img, CV_32FC3, 1.0 / 255.0);
-		Mat lab;
-		cvtColor(img, lab, CV_BGR2Lab);
-		Scalar Mean, StdDev;
-		meanStdDev(lab, Mean, StdDev);
-		allMean += Mean;
-		allStdDev += StdDev;
+
+		Mat imgd;
+		ImageToDouble(img, imgd);
+
+		Mat imgLab;
+		cvtColor(imgd, imgLab, CV_BGR2Lab);
+
+		Scalar imgMean, imgStd;
+		meanStdDev(imgLab, imgMean, imgStd);
+
+		MEAN = MEAN + imgMean;
+		STDDEV = STDDEV + imgStd;
+
 		count++;
 	}
-	allMean /= count;
-	allStdDev /= count;
-	std::cout << "allMean: "<<allMean[0] << " " << allMean[1] << " " << allMean[2]<< std::endl;
-	std::cout << "allStdDev: "<<allStdDev[0] << " " << allStdDev[1] << " " << allStdDev[2]<<std::endl;
-	MEAN = allMean;
-	STDDEV = allStdDev;
+	MEAN /= count;
+	STDDEV /= count;
+	std::cout << "allMean: " << MEAN[0] << " " << MEAN[1] << " " << MEAN[2] << std::endl;
+	std::cout << "allStdDev: " << STDDEV[0] << " " << STDDEV[1] << " " << STDDEV[2] << std::endl;
 	system("pause");
 };

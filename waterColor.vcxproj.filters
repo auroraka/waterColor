@@ -18,16 +18,88 @@
     <None Include="ClassDiagram.cd" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="watercolor.cpp">
-      <Filter>源文件</Filter>
-    </ClCompile>
-    <ClCompile Include="ToolBox.cpp">
-      <Filter>源文件</Filter>
-    </ClCompile>
-  </ItemGroup>
-  <ItemGroup>
-    <ClInclude Include="ToolBox.h">
+    <ClInclude Include="Abstraction.h">
       <Filter>头文件</Filter>
     </ClInclude>
+    <ClInclude Include="ColorAdjustment.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="EdgeDarkening.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="Granulation.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="HandTremorEffect.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="PigmentVariation.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="SaliencyDistance.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="TurblenceFlow.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="WaterColor.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="WetInWet.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="Debug.h">
+      <Filter>资源文件</Filter>
+    </ClInclude>
+    <ClInclude Include="ToolBox.h">
+      <Filter>资源文件</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="Abstraction.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="ColorAdjustment.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="EdgeDarkening.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="Granulation.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="HandTremorEffect.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="main.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="PigmentVariation.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="SaliencyDistance.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="TurblenceFlow.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="WaterColor.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="WetInWet.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="include\meanshift\MeanShift.cpp">
+      <Filter>资源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="Debug.cpp">
+      <Filter>资源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="ToolBox.cpp">
+      <Filter>资源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="include\geometry\Geometry.cpp">
+      <Filter>资源文件</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>
