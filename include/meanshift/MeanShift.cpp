@@ -196,7 +196,7 @@ int MeanShift(const IplImage* img, int **labels)
 					//current Region count
 					regionCount = label+1;
 		}			
-		std::cout<<"Mean Shift(Connect):"<<regionCount<<std::endl;
+		//std::cout<<	"Mean Shift(Connect):"<<regionCount<<std::endl;
 		int oldRegionCount = regionCount;
 
 		// TransitiveClosure
@@ -328,7 +328,7 @@ int MeanShift(const IplImage* img, int **labels)
 
 				deltaRegionCount = oldRegionCount - regionCount;
 				oldRegionCount = regionCount;
-				std::cout<<"Mean Shift(TransitiveClosure):"<<regionCount<<std::endl;
+				//std::cout<<"	Mean Shift(TransitiveClosure):"<<regionCount<<std::endl;
 		}
 
 		// Prune
@@ -461,7 +461,7 @@ int MeanShift(const IplImage* img, int **labels)
 						//Destroy RAM
 						delete[] raList;
 						delete[] raPool;
-						std::cout<<"Mean Shift(Prune):"<<regionCount<<std::endl;
+						//std::cout<<"	Mean Shift(Prune):"<<regionCount<<std::endl;
 			}while(minRegionCount > 0);
 
 			delete [] mode_buffer;
@@ -471,10 +471,11 @@ int MeanShift(const IplImage* img, int **labels)
 
 		// Output
 		STOP_TIMING(timer);
-		std::cout<<"Mean Shift(ms):"<<GET_TIMING(timer)<<std::endl;
+		//std::cout<<"	Mean Shift(ms):"<<GET_TIMING(timer)<<std::endl;
 
 		cvReleaseImage(&result);
 		delete []mode;
 		delete []modePointCounts;
+		std::cout << "	Mean Shift complete";
 		return regionCount;
 }

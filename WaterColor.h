@@ -7,6 +7,7 @@ class WaterColor
 {
 public:
 	void deal(const cv::Mat &input, cv::Mat &output);
+	void deal(cv::Mat& src, cv::Mat& dst);
 };
 
 

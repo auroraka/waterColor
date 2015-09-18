@@ -18,6 +18,7 @@ struct myPoint{
 	int x, y;
 	myPoint(int x = 0, int y = 0) :x(x), y(y){};
 	void print();
+	int dis(myPoint& a);
 };
 
 
@@ -42,9 +43,18 @@ namespace ArraySpace{
 
 	//点p位于[startX,startY] --- (startX+lenX , startX+lenY)中,左上闭,右下开
 	int inMap(myPoint p, int lenX, int lenY, int startX = 0, int startY = 0);
+	//点在Mat范围的矩形中
 	int inMap(Mat &a, myPoint p);
-	void checkMap(Mat &a, myPoint p);
+	int inMap(Mat &a, int x, int y);
+
 }
+
+//-----整数Random--------------
+//返回[0,x-1]
+int rand(int x);
+//返回[a,b]
+int rand(int a, int b);
+//----------------------------
 
 
 
@@ -80,11 +90,15 @@ inline Scalar mul(const Scalar &a, const Scalar &b){
 
 //div
 inline Scalar div(const Scalar &a, const Scalar &b){
-	return Scalar(a[0] / b[0], a[1] / b[1], a[2] / b[2], a[3] / b[3]);
+	return Scalar(a[0] / b[0], a[1] / b[1], a[2] / b[2], a[3]/b[3]);
 }
-
+inline Scalar div(const Scalar &a, float x){
+	return Scalar(a[0] / x, a[1] / x, a[2] / x, a[3] / x);
+}
 //sqr
-inline float sqr(float x);
+float sqr(float x);
+int sqr(int x);
+
 
 //sqrt
 inline Scalar sqrt(const Scalar &a);
@@ -98,6 +112,21 @@ T& dataAt(cv::Mat & src, int i, int j){
 	T* curRow = src.ptr<T>(i);
 	return *(curRow + j * src.channels());
 }
+
+//某点的mean
+template<typename T>
+Scalar getMeanPoint(Mat &src, int x, int y, int kernel = 3){
+	int count = 0;
+	Scalar sum = Scalar::all(0);
+	for (int i = x - kernel; i <= x + kernel; i++){
+		for (int j = y - kernel; j <= y + kernel; j++) if (ArraySpace::inMap(src, myPoint(i, j))){
+			count++;
+			sum = sum + Scalar(dataAt<T>(src, i, j));
+		}
+	}
+	return div(sum, count);
+}
+
 
 
 //------------------------------------------------------FOR Debug----------------------------------------------------

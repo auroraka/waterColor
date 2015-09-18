@@ -2,6 +2,25 @@
 using namespace cv;
 using namespace std;
 
+
+void myPoint::print(){
+	Debug() << x << " " << y;
+}
+
+int myPoint::dis(myPoint &a){
+	return sqr(x - a.x) + sqr(y - a.y);
+}
+int randM(){
+	return rand() | (rand() << 15) | ((rand() & 1) << 30);
+}
+int rand(int x){
+	return randM() % x;
+}
+int rand(int a, int b){
+	return a + rand(b - a + 1);
+}
+
+
 //点p位于[startX --- startX+lenX , startY --- startX+lenY]中
 int ArraySpace::inMap(myPoint p,int lenX, int lenY,int startX ,int startY){
 	return startX <= p.x&&p.x < startX + lenX && startY <= p.y&&p.y < startY + lenY;
@@ -10,9 +29,9 @@ int ArraySpace::inMap(myPoint p,int lenX, int lenY,int startX ,int startY){
 int ArraySpace::inMap(Mat &a, myPoint p){
 	return (0 <= p.x&&p.x < a.rows && 0 <= p.y&&p.y < a.cols);
 }
-void ArraySpace::checkMap(Mat &a, myPoint p){
-	
-	cout<<p.x<<" "<<p.y<<" "<<( 0 <= p.x&&p.x < a.rows && 0 <= p.y&&p.y < a.cols)<<endl;
+//点在Mat范围的矩形中
+int ArraySpace::inMap(Mat &a, int x,int y){
+	return (0 <= x&&x < a.rows && 0 <= y&&y < a.cols);
 }
 Mat mul(const Mat &a, const Scalar &b){
 	Mat c = a.clone();
@@ -100,6 +119,10 @@ inline Scalar sqrt(const Scalar &a)
 
 inline float sqr(float x)
 {
+	return x*x;
+}
+
+int sqr(int x){
 	return x*x;
 }
 

@@ -2,7 +2,7 @@
 #include <iomanip>
 
 
-DebugStatus Debug::Status = FileOut;
+DebugStatus Debug::Status = StdOut;
 
 ofstream fout("debug.txt");
 Debug::Debug(){

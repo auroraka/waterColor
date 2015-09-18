@@ -6,18 +6,38 @@ using namespace cv;
 
 
 int main(){
+	
+
+//	//filter2D(img,)
+//	Mat sobelx,sobely;
+//	cvtColor(img, img, CV_RGB2GRAY);
+//	Sobel(img, sobelx, CV_16S, 1, 0);
+//	imshow("sobelx", sobelx);
+//	Sobel(img, sobely, CV_16S, 1, 0);
+//	imshow("sobely", sobely);
+//	waitKey();
+
+	
+	
+		//----------main------------
+	string inName = "tt2.jpg";
+	string inDir = "src/" + inName;
+	string outName = "output.jpg";
+	string outDir = "dst/" + outName;
+
+	Mat input = imread(inDir),output;
+	Debug() << "img size: " << input.rows << " " << input.cols;
+	WaterColor watercolor;
+	imwrite("process/src.jpg", input);
+	watercolor.deal(input, output);
+	imshow("src", input);
+	imshow("dst", output);
+	imwrite(outDir, output);
+	imwrite("process/dst.jpg", output);
+	waitKey();
 
 
-	//----------main------------
-		Mat input = imread("test.jpg"),output;
-		WaterColor watercolor;
-		imshow("src", input);
-		watercolor.deal(input, output);
-		imshow("dst", output);
-		waitKey();
-		imwrite("output.jpg", output);
 		
-
 ////    DEBUG TEST-----------------
 //	Debug::Status = StdOut;
 //
@@ -43,3 +63,4 @@ int main(){
 //
 //	writeMatF<Vec3f>(test);
 }
+ 

@@ -3,14 +3,16 @@
 using namespace cv;
 
 ColorAdjustment::ColorAdjustment(){
-	MEAN = Scalar(64, 3, 10);
-	STDDEV = Scalar(20, 10, 15);
+	MEAN = Scalar(42, 18, 27);
+	STDDEV = Scalar(25, 21, 28);
 }
 
 void ColorAdjustment::deal(const Mat &input, Mat &output)
 {
 	//colorTransform(input, output);
 	//getTargetStdAndMean();
+	//output = input.clone();
+	
 	colorTransform(input, MEAN, STDDEV, output);
 }
 
@@ -70,11 +72,12 @@ void ColorAdjustment::getTargetStdAndMean()
 	MEAN = Scalar::all(0);
 	STDDEV = Scalar::all(0);
 	int count = 0;
-	for (int i = 1; i <= 23; i++)
+	for (int i = 24; i <= 38; i++)
 	{
+		Debug() <<"loading: "<< i;
 		char fileDir[300]; 
 		sprintf(fileDir, ".//source//%d.jpg", i);
-		//sprintf(fileDir, "test4.jpg");
+		
 		Mat img = imread(fileDir);
 
 		Mat imgd;
@@ -97,3 +100,40 @@ void ColorAdjustment::getTargetStdAndMean()
 	std::cout << "allStdDev: " << STDDEV[0] << " " << STDDEV[1] << " " << STDDEV[2] << std::endl;
 	system("pause");
 };
+
+
+void ColorAdjustment::getTargetStdAndMean(Mat &img, Scalar &imgStd, Scalar &imgMean)
+{
+	Mat imgd;
+	ImageToDouble(img, imgd);
+
+	Mat imgLab;
+	cvtColor(imgd, imgLab, CV_BGR2Lab);
+
+	meanStdDev(imgLab, imgMean, imgStd);
+
+}
+
+#include <fstream>
+void ColorAdjustment::chooseOneStyle(char* style){
+	Debug() << "choose style: " << style;
+	char dir[300];
+	sprintf(dir, "styleLib/%s/list.txt", style);
+	ifstream fin(dir);
+	char name[300];
+	Scalar stdAll = Scalar::all(0), meanAll = Scalar::all(0); int count = 0;
+	while (fin>>name){
+		sprintf(dir, "styleLib/%s/%s", style, name);
+		Debug() << "load pic: " << name;
+		Mat src = imread(dir);
+		Scalar std, mean;
+		getTargetStdAndMean(src, std, mean);
+		stdAll = stdAll+std;
+		meanAll = meanAll+mean;
+		count++;
+	}
+	MEAN = div(meanAll, count);
+	STDDEV = div(stdAll, count);
+	Debug() << "style mean :" << MEAN;
+	Debug() << "style std :" << STDDEV;
+}
