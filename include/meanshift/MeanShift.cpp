@@ -476,6 +476,6 @@ int MeanShift(const IplImage* img, int **labels)
 		cvReleaseImage(&result);
 		delete []mode;
 		delete []modePointCounts;
-		std::cout << "	Mean Shift complete";
+		std::cout << "	Mean Shift complete\n";
 		return regionCount;
 }

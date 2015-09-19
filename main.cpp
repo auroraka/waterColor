@@ -20,7 +20,7 @@ int main(){
 	
 	
 		//----------main------------
-	string inName = "tt2.jpg";
+	string inName = "tiger3.jpg";
 	string inDir = "src/" + inName;
 	string outName = "output.jpg";
 	string outDir = "dst/" + outName;

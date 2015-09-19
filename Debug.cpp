@@ -51,7 +51,7 @@ Debug& Debug::operator<< (DebugCommand a){
 }
 Debug& Debug::operator << (Vec3b a){
 	if (Status == Off) return *this;
-	sout << "(" << a[0] << "," << a[0] <<","<<a[3]<< ")";
+	sout << "(" << int(a[0]) << "," << int(a[1]) <<","<<int(a[2])<< ")";
 	return *this;
 }
 

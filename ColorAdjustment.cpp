@@ -3,8 +3,10 @@
 using namespace cv;
 
 ColorAdjustment::ColorAdjustment(){
-	MEAN = Scalar(42, 18, 27);
-	STDDEV = Scalar(25, 21, 28);
+//	MEAN = Scalar(42, 18, 27);
+//	STDDEV = Scalar(25, 21, 28);
+	MEAN = Scalar(57,14,21);
+	STDDEV = Scalar(21, 19, 25);
 }
 
 void ColorAdjustment::deal(const Mat &input, Mat &output)
@@ -38,7 +40,7 @@ void ColorAdjustment::colorTransform(const Mat &src,Mat &target,Mat &dst){
 	meanStdDev(targetLab, targetMean, targetStd);
 
 	Mat dstLab;
-	dstLab = mul((srcLab - srcMean), (div(targetStd, srcStd))) + targetMean;
+	dstLab = mul((srcLab - srcMean), (divVec(targetStd, srcStd))) + targetMean;
 
 	Mat dstd;
 	cvtColor(dstLab, dstd, CV_Lab2BGR);
@@ -58,7 +60,7 @@ void ColorAdjustment::colorTransform(const Mat &src, Scalar targetMean,Scalar ta
 	meanStdDev(srcLab, srcMean, srcStd);
 
 	Mat dstLab;
-	dstLab = mul((srcLab - srcMean), (div(targetStd, srcStd))) + targetMean;
+	dstLab = mul((srcLab - srcMean), (divVec(targetStd, srcStd))) + targetMean;
 
 	Mat dstd;
 	cvtColor(dstLab, dstd, CV_Lab2BGR);
@@ -132,8 +134,8 @@ void ColorAdjustment::chooseOneStyle(char* style){
 		meanAll = meanAll+mean;
 		count++;
 	}
-	MEAN = div(meanAll, count);
-	STDDEV = div(stdAll, count);
+	MEAN = divVec(meanAll, count);
+	STDDEV = divVec(stdAll, count);
 	Debug() << "style mean :" << MEAN;
 	Debug() << "style std :" << STDDEV;
 }

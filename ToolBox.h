@@ -89,10 +89,10 @@ inline Scalar mul(const Scalar &a, const Scalar &b){
 }
 
 //div
-inline Scalar div(const Scalar &a, const Scalar &b){
+inline Scalar divVec(const Scalar &a, const Scalar &b){
 	return Scalar(a[0] / b[0], a[1] / b[1], a[2] / b[2], a[3]/b[3]);
 }
-inline Scalar div(const Scalar &a, float x){
+inline Scalar divVec(const Scalar &a, float x){
 	return Scalar(a[0] / x, a[1] / x, a[2] / x, a[3] / x);
 }
 //sqr
@@ -124,7 +124,7 @@ Scalar getMeanPoint(Mat &src, int x, int y, int kernel = 3){
 			sum = sum + Scalar(dataAt<T>(src, i, j));
 		}
 	}
-	return div(sum, count);
+	return divVec(sum, count);
 }
 
 

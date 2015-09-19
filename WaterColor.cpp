@@ -13,18 +13,21 @@ using namespace cv;
 
 void WaterColor::deal(Mat &src, Mat &dst)
 {
-
+	dst = src.clone();
 
 
 	//Pre deal
-//	Debug() << "color transform...";
-//	Mat myColorTransform;
-//	ColorAdjustment colorAdjustment;
-//	//colorAdjustment.chooseOneStyle("color-warm");   //预处理图片风格
-//	colorAdjustment.deal(src, myColorTransform);
-//	imwrite("process/colorTransform.jpg", myColorTransform);
+	Debug() << "color transform...";
+	Mat myColorTransform;
+	ColorAdjustment colorAdjustment;
+	//colorAdjustment.chooseOneStyle("test");   //预处理图片风格
+	colorAdjustment.deal(src, myColorTransform);
+	//myColorTransform = src.clone();
+	imwrite("process/colorTransform.jpg", myColorTransform);
 
-	Mat myColorTransform=src.clone();//
+//		dst = myColorTransform;////
+//			return;////
+
 
 
 	
@@ -36,8 +39,8 @@ void WaterColor::deal(Mat &src, Mat &dst)
 	imwrite("process/dis.jpg", myDis*255);
 	imwrite("process/saliency.jpg", mySaliency);
 
-
-	//Abstraciton
+	
+//	//Abstraciton
 	Debug() << "abstraction...";
 	Mat myAbstraction;
 	Abstraction abstraction;
@@ -45,17 +48,12 @@ void WaterColor::deal(Mat &src, Mat &dst)
 	imwrite("process/abstraciton.jpg", myAbstraction);
 
 
-		dst = myAbstraction;////
-		return;////
-
-
 	//Add effects
-//	Mat myAbstraction = imread("process/abstraciton.jpg");
+	//Mat myAbstraction = imread("process/abstraciton.jpg");
 	Debug() << "wet in wet...";
 	Mat myWetInWet;
 	WetInWet wetInWet;
 	wetInWet.deal(src,myAbstraction, myWetInWet);
-	dst = myWetInWet;
 	imwrite("process/wetinwet.jpg", myWetInWet);
 
 	//	HandTremorEffect handTremoeEffect;

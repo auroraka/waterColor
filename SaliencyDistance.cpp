@@ -153,7 +153,7 @@ void SaliencyDistance::normalize(Mat &dis, Geometry::Point** ancestor){
 void SaliencyDistance::deal(Mat &src, Mat &dstSaliency,Mat &dstDis)
 {
 	
-
+	
 	//saliency picture
 	Mat mySaliency;
 	saliency(src,mySaliency);
