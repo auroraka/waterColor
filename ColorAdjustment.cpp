@@ -1,5 +1,6 @@
 ﻿#include "ColorAdjustment.h"
 #include "ToolBox.h"
+#include "Debug.h"
 using namespace cv;
 
 ColorAdjustment::ColorAdjustment(){

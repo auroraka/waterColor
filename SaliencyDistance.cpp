@@ -1,6 +1,6 @@
-﻿
-#include "SaliencyDistance.h"
+﻿#include "SaliencyDistance.h"
 #include "ToolBox.h"
+#include "Debug.h"
 using namespace cv;
 
 

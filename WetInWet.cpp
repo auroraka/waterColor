@@ -1,5 +1,6 @@
 ﻿#include "WetInWet.h"
 #include "ToolBox.h"
+#include "Debug.h"
 using namespace cv;
 
 void getCanny(Mat &src, Mat &dst){
@@ -73,13 +74,16 @@ myPoint getDarkestPoint(int x,int y,Mat &gray,int kernel){
 		}
 	return rec;
 }
-void WetInWet::deal(Mat &src,Mat &myAbstraction ,Mat &dst)
+void WetInWet::deal(Mat &src,Mat &myAbstraction ,Mat &dst,Mat &myCanny)
 {
 	int n = src.rows, m = src.cols;
-	Mat myCanny, gray,mask = Mat::zeros(src.size(), CV_8U);
+	Mat gray,mask = Mat::zeros(src.size(), CV_8U);
 	dst = myAbstraction.clone();
 	Debug() << "	canny...";
 	getCanny(src,myCanny);
+
+	return; ////
+
 	cvtColor(src, gray, CV_RGB2GRAY);
 	myPoint** nearest = ArraySpace::newArray<myPoint>(n, m);
 	myPoint* Q = new myPoint[n*m + 5];

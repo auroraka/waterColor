@@ -9,7 +9,27 @@
 #include "TurblenceFlow.h"
 #include "PigmentVariation.h"
 #include "ToolBox.h"
+#include "Debug.h"
 using namespace cv;
+
+void texture(Mat &src,Mat &dst){
+	vector<Mat> srcs;
+	split(src, srcs);
+	Mat texture = imread("texture.jpg", CV_LOAD_IMAGE_GRAYSCALE);
+	Mat add(src.size(), CV_8U);
+
+	for (int i = 0; i < add.rows; i++)
+		for (int j = 0; j < add.cols; j++){
+			int x = texture.at<uchar>(i%texture.rows, j%texture.cols);
+			x = max(x, 240);
+			add.at<uchar>(i, j) = min(x, 255);
+		}
+	//imshow("add", add);
+	//waitKey();
+	srcs.push_back(add);
+	merge(srcs, dst);
+	//imwrite("aaa.png", dst);
+}	
 
 void WaterColor::deal(Mat &src, Mat &dst)
 {
@@ -20,15 +40,13 @@ void WaterColor::deal(Mat &src, Mat &dst)
 	Debug() << "color transform...";
 	Mat myColorTransform;
 	ColorAdjustment colorAdjustment;
-	//colorAdjustment.chooseOneStyle("test");   //预处理图片风格
+	colorAdjustment.chooseOneStyle("test");   //预处理图片风格
 	colorAdjustment.deal(src, myColorTransform);
 	//myColorTransform = src.clone();
 	imwrite("process/colorTransform.jpg", myColorTransform);
 
 //		dst = myColorTransform;////
 //			return;////
-
-
 
 	
 	//Basic transform
@@ -49,16 +67,24 @@ void WaterColor::deal(Mat &src, Mat &dst)
 
 
 	//Add effects
-	//Mat myAbstraction = imread("process/abstraciton.jpg");
+	//Mat myAbstraction = imread("process/abstraciton.jpg");////
 	Debug() << "wet in wet...";
-	Mat myWetInWet;
+	Mat myWetInWet, myCanny;
 	WetInWet wetInWet;
-	wetInWet.deal(src,myAbstraction, myWetInWet);
+	wetInWet.deal(src,myAbstraction, myWetInWet,myCanny);
 	imwrite("process/wetinwet.jpg", myWetInWet);
 
-	//	HandTremorEffect handTremoeEffect;
-//	handTremoeEffect.deal(output, output);
-//	
+
+
+
+
+
+//	Mat myHandTremor;
+//	HandTremorEffect handTremoeEffect;
+//	handTremoeEffect.deal(myWetInWet, myHandTremor,myCanny);
+//	imwrite("process/handtremor.jpg", myHandTremor);
+
+
 //	EdgeDarkening edgeDarkening;
 //	edgeDarkening.deal(output, output);
 //	
@@ -75,4 +101,12 @@ void WaterColor::deal(Mat &src, Mat &dst)
 //	//DoubleToImage(output, output);
 //	//DoubleToImage(output, output);
 //	output.convertTo(output, CV_8UC3, 255.0);
+
+	
+	//Mat myWetInWet = imread("process/wetinwet.jpg");
+	Mat myTexture;
+	texture(myWetInWet, myTexture);
+	//Debug() << myTexture.channels();
+	imwrite("process/texture.png", myTexture);
+	dst = myTexture;
 }

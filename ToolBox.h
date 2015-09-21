@@ -1,7 +1,10 @@
 #ifndef TOOLBOX_H
 #define TOOLBOX_H
 
+#ifdef DEBUG_H
 #include "Debug.h"
+#endif
+
 #include <opencv2/opencv.hpp>
 #include <fstream>
 #include <iomanip>
@@ -95,6 +98,33 @@ inline Scalar divVec(const Scalar &a, const Scalar &b){
 inline Scalar divVec(const Scalar &a, float x){
 	return Scalar(a[0] / x, a[1] / x, a[2] / x, a[3] / x);
 }
+
+inline bool operator < (const Vec3b &a, const Vec3b &b){
+	return a[0] < b[0] && a[1] < b[1] && a[2] < b[2];
+}
+inline bool operator > (const Vec3b &a, const Vec3b &b){
+	//return true;
+	//Debug() <<AllInt<< a[0] << " " << a[1] << " " << a[2];
+	return a[0] > b[0] && a[1] > b[1] && a[2] > b[2];
+}
+
+inline Vec3b operator - (const Vec3b &a, const Vec3b &b){
+	return Vec3b(a[0] - b[0], a[1] - b[1], a[2] - b[2]);
+}
+inline Vec3b operator + (const Vec3b &a, const Vec3b &b){
+	return Vec3b(a[0] + b[0], a[1] + b[1], a[2] + b[2]);
+}
+inline Vec3b operator / (const Vec3b &a, const Vec3b &b){
+	return Vec3b(a[0] / b[0], a[1] / b[1], a[2] / b[2]);
+}
+inline Vec3b operator / (const Vec3b &a, double x){
+	return Vec3b(a[0] / x, a[1] / x, a[2] / x);
+}
+inline Vec3b abs(const Vec3b &a){
+	return Vec3b(abs(a[0]), abs(a[1]), abs(a[2]));
+}
+Vec3b mean(const Vec3b &a, const Vec3b &b);
+
 //sqr
 float sqr(float x);
 int sqr(int x);

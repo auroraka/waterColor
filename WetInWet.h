@@ -7,6 +7,7 @@ class WetInWet
 {
 public:
 	void deal(cv::Mat& src, cv::Mat& myAbstraction, cv::Mat& dst);
+	void deal(cv::Mat& src, cv::Mat& myAbstraction, cv::Mat& dst, cv::Mat& myCanny);
 };
 
 

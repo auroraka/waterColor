@@ -74,6 +74,7 @@
     <ClInclude Include="EdgeDarkening.h" />
     <ClInclude Include="Granulation.h" />
     <ClInclude Include="HandTremorEffect.h" />
+    <ClInclude Include="include\geometry\Geometry.h" />
     <ClInclude Include="PigmentVariation.h" />
     <ClInclude Include="SaliencyDistance.h" />
     <ClInclude Include="ToolBox.h" />

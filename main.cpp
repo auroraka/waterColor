@@ -6,7 +6,19 @@ using namespace cv;
 
 
 int main(){
-	
+//	Mat a = Mat::zeros(300, 300, CV_8U);
+//	int i = 50;
+//	for (int j = 1; j <= 100; j++){
+//	//	Debug() << i << ": " << 5 * sin(i / 5.0);
+//		int w = 3 * sin(j / 8.0);
+//		if (w < 0) for (int x = i + w; x <= i; x++) dataAt<uchar>(a, x,j) = 255;
+//		if (w > 0) for (int x = i; x <= i+w; x++) dataAt<uchar>(a,  x,j) = 255;
+//	}
+//	imshow("aaa", a);
+//	waitKey();
+//	//Debug().pause();
+//	return 0;
+		
 
 //	//filter2D(img,)
 //	Mat sobelx,sobely;
@@ -20,9 +32,9 @@ int main(){
 	
 	
 		//----------main------------
-	string inName = "tiger3.jpg";
+	string inName = "src.jpg";
 	string inDir = "src/" + inName;
-	string outName = "output.jpg";
+	string outName = "output.png";
 	string outDir = "dst/" + outName;
 
 	Mat input = imread(inDir),output;
@@ -33,7 +45,7 @@ int main(){
 	imshow("src", input);
 	imshow("dst", output);
 	imwrite(outDir, output);
-	imwrite("process/dst.jpg", output);
+	imwrite("process/dst.png", output);
 	waitKey();
 
 

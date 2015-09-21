@@ -2,10 +2,11 @@
 using namespace cv;
 using namespace std;
 
-
+#ifdef DEBUG_H
 void myPoint::print(){
 	Debug() << x << " " << y;
 }
+#endif
 
 int myPoint::dis(myPoint &a){
 	return sqr(x - a.x) + sqr(y - a.y);
@@ -100,6 +101,14 @@ void DoubleNomolization(Mat &a)
 inline Scalar sqrt(const Scalar &a)
 {
 	return Scalar(sqrt(a[0]), sqrt(a[1]), sqrt(a[2]), sqrt(a[3]));
+}
+
+Vec3b mean(const Vec3b &a, const Vec3b &b){
+	return Vec3b(
+		(int(a[0]) + int(b[0])) / 2,
+		(int(a[1]) + int(b[1])) / 2,
+		(int(a[2]) + int(b[2])) / 2
+		);
 }
 
 //Ê¹ÓÃMat::meanStdDev()

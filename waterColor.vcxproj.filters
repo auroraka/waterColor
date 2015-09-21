@@ -42,9 +42,6 @@
     <ClInclude Include="TurblenceFlow.h">
       <Filter>头文件</Filter>
     </ClInclude>
-    <ClInclude Include="WaterColor.h">
-      <Filter>头文件</Filter>
-    </ClInclude>
     <ClInclude Include="WetInWet.h">
       <Filter>头文件</Filter>
     </ClInclude>
@@ -53,6 +50,12 @@
     </ClInclude>
     <ClInclude Include="ToolBox.h">
       <Filter>资源文件</Filter>
+    </ClInclude>
+    <ClInclude Include="WaterColor.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="include\geometry\Geometry.h">
+      <Filter>头文件</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

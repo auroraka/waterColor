@@ -2,7 +2,6 @@
 #define DEBUG_H
 
 #include "include\geometry\Geometry.h"
-
 #include <opencv2/opencv.hpp>
 #include <sstream>
 #include <fstream>
@@ -10,8 +9,16 @@
 using namespace std;
 using namespace cv;
 
+
+/*******************/
+//  example
+// Debug()<<Point(x,y)             (1,3)\n
+// Debug()<<"time: "<<3.55          3.55\n
+// for (int i=1;i<=3;i++) Debug()<<"a"<<NoEnter; Debug();             a a a\n
+/******************/
+
 enum DebugStatus{ Off, StdOut, FileOut };
-enum DebugCommand{ NoEnter};
+enum DebugCommand{ NoEnter ,AllInt};
 
 //use "Debug().setStatus(Off)" to close debug 
 class Debug{
@@ -23,6 +30,7 @@ private:
 	int noEnter;
 	int floatDigit;
 	static DebugStatus Status;
+	int allInt;
 public:
 
 
@@ -36,12 +44,16 @@ public:
 	Debug& operator << (DebugCommand a);
 	Debug& operator << (Vec3b a);
 	Debug& operator << (float a);
-	Debug& operator << (Geometry::Point a);
+	Debug& operator << (uchar a);
 	template<typename T>
 	Debug& operator << (T a){
 		if (Status == Off) return *this;
 		sout << a;
 		return *this;
 	}	
+	   
+#ifdef GEOMETRY_H
+	Debug& operator << (Geometry::Point a);
+#endif
 };
 #endif

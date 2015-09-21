@@ -9,6 +9,7 @@ Debug::Debug(){
 	fileName = "debug.txt";
 	noEnter = 0;
 	floatDigit = 2;
+	allInt = 0;
 }
 Debug::~Debug(){
 	if (Status == Off) return;
@@ -47,6 +48,7 @@ Debug& Debug::operator<< (DebugCommand a){
 	if (a == NoEnter){
 		noEnter = 1;
 	}
+	if (a == AllInt) allInt = 1;
 	return *this;
 }
 Debug& Debug::operator << (Vec3b a){
@@ -55,14 +57,23 @@ Debug& Debug::operator << (Vec3b a){
 	return *this;
 }
 
+#ifdef GEOMETRY_H
 Debug& Debug::operator << (Geometry::Point a){
 	if (Status == Off) return *this;
 	sout << "(" << a.x<< "," << a.y << ")";
 	return *this;
 }
 
+#endif
+
 Debug& Debug::operator<< (float a){
 	if (Status == Off) return *this;
-	sout << setprecision(2) << fixed << a;
+	sout << setprecision(2) << fixed << allInt?int(a):a;
+	return *this;
+}
+
+Debug& Debug::operator<< (uchar a){
+	if (Status == Off) return *this;
+	sout << (allInt ? int(a) : uchar(a));
 	return *this;
 }
