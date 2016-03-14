@@ -2,7 +2,7 @@
 
 ## Referenced from 
 ```
-¡¶Towards Photo Watercolorization with Artistic Verisimilitude¡·
+<Towards Photo Watercolorization with Artistic Verisimilitude>
 ```
 
 ## Environment require
@@ -28,6 +28,8 @@ There are 5 steps processed by WaterColor:
 
 
 ## Examples
-program examples locate in /watercolor/process/pic/*src|dst.jpg|png 
+program examples locate in /watercolor/process/pic/*src|dst.jpg|png
+ 
 referenced paper examples locate in /example from paper
+
 @Tianlong Yang (yangtianlong@gmail.com)    In 2016.3.14
