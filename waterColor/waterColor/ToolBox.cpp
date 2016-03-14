@@ -34,15 +34,16 @@ int ArraySpace::inMap(Mat &a, myPoint p){
 int ArraySpace::inMap(Mat &a, int x,int y){
 	return (0 <= x&&x < a.rows && 0 <= y&&y < a.cols);
 }
-void mul(const Mat &a, const Scalar &b,Mat &c){
+Mat mul(const Mat &a, const Scalar &b){
+	Mat c = a.clone();
 	vector<Mat> clist;
-	split(a, clist);
-	cout << clist.size();
-	for (int i = 0; i < clist.size(); i++)
+	split(c, clist);
+	for (int i = 0; i < 3; i++)
 	{
 		clist[i] = clist[i] * b[i];
 	}
 	merge(clist, c);
+	return c;
 }
 
 //Mat::convertTo(*,*,alpha,beta)为统一乘alpha加beta再转换

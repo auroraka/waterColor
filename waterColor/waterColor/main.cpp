@@ -7,27 +7,22 @@ using namespace cv;
 
 int main(){
 
-	//file dir
-	string inName = "horse.jpg";
-	string inDir = "picture/" + inName;
-	string outName = "horse-dst.png";
-	string outDir = "picture/" + outName;
+		//----------main------------
+	string inName = "src-small.jpg";
+	string inDir = "src/" + inName;
+	string outName = "output.png";
+	string outDir = "dst/" + outName;
 
-	//read image
 	Mat input = imread(inDir),output;
 	Debug() << "img size: " << input.rows << " " << input.cols;
-	
-	//watercolor process
 	WaterColor watercolor;
-	watercolor.deal(input, output);//deal with watercolor
-	imwrite(outDir, output);//store dst picture
-	
-	//show result
+	imwrite("process/src.jpg", input);
+	watercolor.deal(input, output);
 	imshow("src", input);
 	imshow("dst", output);
+	imwrite(outDir, output);
+	imwrite("process/dst.png", output);
 	waitKey();
 
-
-		
 }
  

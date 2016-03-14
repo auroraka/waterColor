@@ -26,9 +26,7 @@ void ColorAdjustment::deal(const Mat &input, Mat &output)
 //2.将src和target从RGB空间转为Lab空间
 //3.作变换dstLab = (srcLab - mean(src)) * (std(target) / std(src)) + mean(taarget)
 //4.dstLab转回RGB空间并变回uchar格式
-
-
-/*void ColorAdjustment::colorTransform(const Mat &src,Mat &target,Mat &dst){
+void ColorAdjustment::colorTransform(const Mat &src,Mat &target,Mat &dst){
 	
 	Mat srcd, targetd;
 	ImageToDouble(src, srcd);
@@ -49,26 +47,21 @@ void ColorAdjustment::deal(const Mat &input, Mat &output)
 	cvtColor(dstLab, dstd, CV_Lab2BGR);
 
 	DoubleToImage(dstd, dst);
-}*/
+}
 
 void ColorAdjustment::colorTransform(const Mat &src, Scalar targetMean,Scalar targetStd, Mat &dst){
-	
 	
 	Mat srcd;
 	ImageToDouble(src, srcd);
 	
 	Mat srcLab;
 	cvtColor(srcd, srcLab, CV_BGR2Lab);
+	
 	Scalar srcMean, srcStd;
 	meanStdDev(srcLab, srcMean, srcStd);
 
-	Mat a=(srcLab - srcMean);
-	Scalar b=(divVec(targetStd, srcStd));
-	
 	Mat dstLab;
-	//dstLab = mul((srcLab - srcMean), (divVec(targetStd, srcStd))) + targetMean;
-	mul((srcLab - srcMean), (divVec(targetStd, srcStd)), dstLab);
-	dstLab=dstLab+targetMean;
+	dstLab = mul((srcLab - srcMean), (divVec(targetStd, srcStd))) + targetMean;
 
 	Mat dstd;
 	cvtColor(dstLab, dstd, CV_Lab2BGR);

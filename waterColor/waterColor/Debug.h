@@ -9,6 +9,7 @@
 using namespace std;
 using namespace cv;
 
+
 /*******************/
 //  example
 // Debug()<<Point(x,y)             (1,3)\n

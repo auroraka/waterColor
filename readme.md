@@ -7,7 +7,7 @@
 
 ## Environment require
 	To run this program,you need to install:
-	* VS 2013+
+	* VS 2013+  (Do not use VS 2015 if possible for some strange things may happen)
 	* OpenCV 2.4.11+
 
 ## Program Structure

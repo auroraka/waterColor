@@ -85,8 +85,6 @@ void DoubleNomolization(Mat &a);
 
 //a的每一个通道分别乘以b对应的值
 Mat mul(const Mat &a, const Scalar &b);
-void mul(const Mat &a, const Scalar &b,Mat &c);
-
 
 //mul
 inline Scalar mul(const Scalar &a, const Scalar &b){
@@ -156,7 +154,7 @@ Scalar getMeanPoint(Mat &src, int x, int y, int kernel = 3){
 			sum = sum + Scalar(dataAt<T>(src, i, j));
 		}
 	}
-	return divVec(sum, count);
+	return divVec(sum, (float)count);
 }
 
 

@@ -33,8 +33,6 @@ void texture(Mat &src,Mat &dst){
 
 void WaterColor::deal(Mat &src, Mat &dst)
 {
-	
-	imwrite("process/src.jpg", src);//store src picture
 	dst = src.clone();
 
 
@@ -111,7 +109,4 @@ void WaterColor::deal(Mat &src, Mat &dst)
 	//Debug() << myTexture.channels();
 	imwrite("process/texture.png", myTexture);
 	dst = myTexture;
-
-	imwrite("process/dst.png", dst);
-
 }

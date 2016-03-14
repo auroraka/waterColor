@@ -7,14 +7,15 @@ using namespace cv;
 void SaliencyDistance::saliency(Mat &src,Mat &mySaliency){
 	string inputDir = "D:\\saliencyTemp\\in\\";
 	string outputDir = "D:\\saliencyTemp\\out\\";
+	//string inputDir = "./";
+	//string outputDir = "./";
 	char cmd[300];
 	sprintf(cmd, "del %s && del %s", (outputDir + "saliency_RCC.png").c_str(), (outputDir + "saliency_RC.png").c_str());
 	system(cmd);
+	system("mkdir D:\\saliencyTemp\\in");
 	imwrite(string(inputDir) + "saliency.jpg", src);
 	system("cd include/saliency && Saliency.exe >> nul");
-	//system("pause");
-	//exit(0);
-
+	
 	mySaliency = imread(outputDir+"saliency_RCC.png",CV_LOAD_IMAGE_GRAYSCALE);
 }
 
