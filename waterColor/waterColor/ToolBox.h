@@ -85,6 +85,8 @@ void DoubleNomolization(Mat &a);
 
 //a的每一个通道分别乘以b对应的值
 Mat mul(const Mat &a, const Scalar &b);
+void mul(const Mat &a, const Scalar &b,Mat &c);
+
 
 //mul
 inline Scalar mul(const Scalar &a, const Scalar &b){
