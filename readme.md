@@ -12,10 +12,11 @@
 
 ## Program Structure
 WaterColor
-···
+	
+	···
 	$ WaterColor water
 	$ water.deal(inputImg,outputImg)
-···
+	···
 There are 5 steps processed by WaterColor:
 
 	1.ColorAdjustment
