@@ -7,17 +7,16 @@ using namespace cv;
 void SaliencyDistance::saliency(Mat &src,Mat &mySaliency){
 	string inputDir = "D:\\saliencyTemp\\in\\";
 	string outputDir = "D:\\saliencyTemp\\out\\";
-	//string inputDir = "./";
-	//string outputDir = "./";
 	char cmd[300];
-	sprintf(cmd, "del %s && del %s", (outputDir + "saliency_RCC.png").c_str(), (outputDir + "saliency_RC.png").c_str());
-	system(cmd);
-	system("mkdir D:\\saliencyTemp\\in");
+	system("if not exist D:\\saliencyTemp\\in\\ mkdir D:\\saliencyTemp\\in\\");
+	system("if not exist D:\\saliencyTemp\\out\\ mkdir D:\\saliencyTemp\\out\\");
+	system("del /A /Q D:\\saliencyTemp\\in\\*");
+	system("del /A /Q D:\\saliencyTemp\\out\\*");
 	imwrite(string(inputDir) + "saliency.jpg", src);
-	//system("cd include/saliency && Saliency.exe >> nul");
 	system("Saliency.exe >> nul");
 
 	mySaliency = imread(outputDir+"saliency_RCC.png",CV_LOAD_IMAGE_GRAYSCALE);
+	//system("rd /S /Q D:\saliencyTemp");
 }
 
 void SaliencyDistance::jumpFlooding(Mat &saliency, Mat &jump, Geometry::Point** ancestor){
