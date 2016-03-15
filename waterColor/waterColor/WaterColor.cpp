@@ -40,7 +40,8 @@ void WaterColor::deal(Mat &src, Mat &dst)
 	Debug() << "color transform...";
 	Mat myColorTransform;
 	ColorAdjustment colorAdjustment;
-	colorAdjustment.chooseOneStyle("test");   //预处理图片风格
+	//colorAdjustment.chooseOneStyle("test");   //预处理图片风格
+	colorAdjustment.loadExampleStyle();
 	colorAdjustment.deal(src, myColorTransform);
 	//myColorTransform = src.clone();
 	imwrite("process/colorTransform.jpg", myColorTransform);
@@ -73,9 +74,6 @@ void WaterColor::deal(Mat &src, Mat &dst)
 	WetInWet wetInWet;
 	wetInWet.deal(src,myAbstraction, myWetInWet,myCanny);
 	imwrite("process/wetinwet.jpg", myWetInWet);
-
-
-
 
 
 

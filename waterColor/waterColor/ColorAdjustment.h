@@ -15,6 +15,7 @@ public:
 	void deal(const cv::Mat &input, cv::Mat &output);
 	void getTargetStdAndMean();
 	void getTargetStdAndMean(cv::Mat& img, cv::Scalar& imgStd, cv::Scalar& imgMean);
+	void loadExampleStyle();
 	void chooseOneStyle(char* style);
 	void loadPitureLibary(char* style);
 	void getStdAndMean();

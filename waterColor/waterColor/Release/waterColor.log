@@ -1,15 +1,11 @@
-﻿生成启动时间为 2016/3/14 20:41:55。
-     1>项目“D:\work\Sensetime\waterColor\waterCo\waterColor\waterColor\waterColor.vcxproj”在节点 2 上(Build 个目标)。
+﻿生成启动时间为 2016/3/15 8:50:47。
+     1>项目“D:\work\Sensetime\waterColor\waterColor\waterColor\waterColor\waterColor.vcxproj”在节点 2 上(Build 个目标)。
      1>ClCompile:
-         C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\CL.exe /c /Zi /nologo /W3 /WX- /sdl /O2 /Oi /Oy- /GL /D _CRT_SECURE_NO_DEPRECATE /D _SCL_SECURE_NO_DEPRECATE /D _MBCS /Gm- /EHsc /MD /GS /Gy /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Release\\" /Fd"Release\vc120.pdb" /Gd /TP /analyze- /errorReport:prompt SaliencyDistance.cpp main.cpp
-         SaliencyDistance.cpp
-     1>d:\work\sensetime\watercolor\waterco\watercolor\watercolor\ToolBox.h(121): warning C4244: “参数”: 从“double”转换到“uchar”，可能丢失数据
-     1>SaliencyDistance.cpp(58): warning C4244: “参数”: 从“double”转换到“int”，可能丢失数据
-     1>SaliencyDistance.cpp(92): warning C4244: “参数”: 从“double”转换到“int”，可能丢失数据
-         main.cpp
-     1>d:\work\sensetime\watercolor\waterco\watercolor\watercolor\ToolBox.h(121): warning C4244: “参数”: 从“double”转换到“uchar”，可能丢失数据
+         C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\CL.exe /c /Zi /nologo /W3 /WX- /sdl /O2 /Oi /Oy- /GL /D _CRT_SECURE_NO_DEPRECATE /D _SCL_SECURE_NO_DEPRECATE /D _MBCS /Gm- /EHsc /MD /GS /Gy /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Release\\" /Fd"Release\vc120.pdb" /Gd /TP /analyze- /errorReport:prompt WaterColor.cpp
+         WaterColor.cpp
+     1>d:\work\sensetime\watercolor\watercolor\watercolor\watercolor\ToolBox.h(121): warning C4244: “参数”: 从“double”转换到“uchar”，可能丢失数据
        Link:
-         C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\link.exe /ERRORREPORT:PROMPT /OUT:"D:\work\Sensetime\waterColor\waterCo\waterColor\Release\waterColor.exe" /NOLOGO opencv_objdetect2411.lib opencv_ts2411.lib opencv_video2411.lib opencv_nonfree2411.lib opencv_ocl2411.lib opencv_photo2411.lib opencv_stitching2411.lib opencv_superres2411.lib opencv_videostab2411.lib opencv_calib3d2411.lib opencv_contrib2411.lib opencv_core2411.lib opencv_features2d2411.lib opencv_flann2411.lib opencv_gpu2411.lib opencv_highgui2411.lib opencv_imgproc2411.lib opencv_legacy2411.lib opencv_ml2411.lib opencv_ml2411d.lib opencv_calib3d2411d.lib opencv_contrib2411d.lib opencv_core2411d.lib opencv_features2d2411d.lib opencv_flann2411d.lib opencv_gpu2411d.lib opencv_highgui2411d.lib opencv_imgproc2411d.lib opencv_legacy2411d.lib opencv_objdetect2411d.lib opencv_ts2411d.lib opencv_video2411d.lib opencv_nonfree2411d.lib opencv_ocl2411d.lib opencv_photo2411d.lib opencv_stitching2411d.lib opencv_superres2411d.lib opencv_videostab2411d.lib kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:"D:\work\Sensetime\waterColor\waterCo\waterColor\Release\waterColor.pdb" /OPT:REF /OPT:ICF /LTCG /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"D:\work\Sensetime\waterColor\waterCo\waterColor\Release\waterColor.lib" /MACHINE:X86 /SAFESEH Release\Abstraction.obj
+         C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\link.exe /ERRORREPORT:PROMPT /OUT:"D:\work\Sensetime\waterColor\waterColor\waterColor\Release\waterColor.exe" /NOLOGO opencv_objdetect2411.lib opencv_ts2411.lib opencv_video2411.lib opencv_nonfree2411.lib opencv_ocl2411.lib opencv_photo2411.lib opencv_stitching2411.lib opencv_superres2411.lib opencv_videostab2411.lib opencv_calib3d2411.lib opencv_contrib2411.lib opencv_core2411.lib opencv_features2d2411.lib opencv_flann2411.lib opencv_gpu2411.lib opencv_highgui2411.lib opencv_imgproc2411.lib opencv_legacy2411.lib opencv_ml2411.lib opencv_ml2411d.lib opencv_calib3d2411d.lib opencv_contrib2411d.lib opencv_core2411d.lib opencv_features2d2411d.lib opencv_flann2411d.lib opencv_gpu2411d.lib opencv_highgui2411d.lib opencv_imgproc2411d.lib opencv_legacy2411d.lib opencv_objdetect2411d.lib opencv_ts2411d.lib opencv_video2411d.lib opencv_nonfree2411d.lib opencv_ocl2411d.lib opencv_photo2411d.lib opencv_stitching2411d.lib opencv_superres2411d.lib opencv_videostab2411d.lib kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:"D:\work\Sensetime\waterColor\waterColor\waterColor\Release\waterColor.pdb" /OPT:REF /OPT:ICF /LTCG /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"D:\work\Sensetime\waterColor\waterColor\waterColor\Release\waterColor.lib" /MACHINE:X86 /SAFESEH Release\Abstraction.obj
          Release\ColorAdjustment.obj
          Release\Debug.obj
          Release\EdgeDarkening.obj
@@ -26,9 +22,9 @@
          Release\WetInWet.obj
          正在生成代码
          已完成代码的生成
-         waterColor.vcxproj -> D:\work\Sensetime\waterColor\waterCo\waterColor\Release\waterColor.exe
-     1>已完成生成项目“D:\work\Sensetime\waterColor\waterCo\waterColor\waterColor\waterColor.vcxproj”(Build 个目标)的操作。
+         waterColor.vcxproj -> D:\work\Sensetime\waterColor\waterColor\waterColor\Release\waterColor.exe
+     1>已完成生成项目“D:\work\Sensetime\waterColor\waterColor\waterColor\waterColor\waterColor.vcxproj”(Build 个目标)的操作。
 
 生成成功。
 
-已用时间 00:00:05.41
+已用时间 00:00:03.08

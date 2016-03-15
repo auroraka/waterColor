@@ -14,8 +14,9 @@ void SaliencyDistance::saliency(Mat &src,Mat &mySaliency){
 	system(cmd);
 	system("mkdir D:\\saliencyTemp\\in");
 	imwrite(string(inputDir) + "saliency.jpg", src);
-	system("cd include/saliency && Saliency.exe >> nul");
-	
+	//system("cd include/saliency && Saliency.exe >> nul");
+	system("Saliency.exe >> nul");
+
 	mySaliency = imread(outputDir+"saliency_RCC.png",CV_LOAD_IMAGE_GRAYSCALE);
 }
 

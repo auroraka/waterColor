@@ -101,7 +101,6 @@ void ColorAdjustment::getTargetStdAndMean()
 	STDDEV /= count;
 	std::cout << "allMean: " << MEAN[0] << " " << MEAN[1] << " " << MEAN[2] << std::endl;
 	std::cout << "allStdDev: " << STDDEV[0] << " " << STDDEV[1] << " " << STDDEV[2] << std::endl;
-	system("pause");
 };
 
 
@@ -114,6 +113,12 @@ void ColorAdjustment::getTargetStdAndMean(Mat &img, Scalar &imgStd, Scalar &imgM
 	cvtColor(imgd, imgLab, CV_BGR2Lab);
 
 	meanStdDev(imgLab, imgMean, imgStd);
+
+}
+
+void ColorAdjustment::loadExampleStyle(){
+	MEAN = Scalar(55.49, 10.12, 20.45);
+	STDDEV = Scalar(20.45, 12.26, 14.85);
 
 }
 

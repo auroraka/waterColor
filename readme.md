@@ -31,8 +31,17 @@ There are 5 steps processed by WaterColor:
 
 
 ## Picture Examples
-program examples locate in /watercolor/process/pic/*src|dst.jpg|png
+program examples locate in waterColor/process/pic/*src|dst.jpg|png
  
 referenced paper examples locate in /example from paper
 
 @Tianlong Yang (yangtianlong@gmail.com)    In 2016.3.14
+
+## Example EXE
+here are an exaple exe in waterColor/waterColor/exampleExe/
+you can use command
+```
+waterColor.exe input.jpg output.jpg
+```
+to run this project.
+There are still some bugs for this projrct,so the effect and speed is not saitisfied.
